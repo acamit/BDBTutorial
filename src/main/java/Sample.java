@@ -116,8 +116,7 @@ public class Sample {
 
         private void addShipments() {
             Map shipments = views.getShipmentMap();
-            if (shipments.isEmpty())
-            {
+            if (shipments.isEmpty()) {
                 System.out.println("Adding Shipments");
                 shipments.put(new ShipmentKey("P1", "S1"),
                         new ShipmentData(300));
@@ -154,15 +153,30 @@ public class Sample {
             printEntries("Shipments", views.getShipmentEntrySet().iterator());
             printEntries("Suppliers", views.getSupplierEntrySet().iterator());
 
+            printValues("Suppliers for City Paris", views.getSupplierByCityMap().duplicates("Paris").iterator());
+            printValues("Shipments for Part P1", views.getShipmentByPartMap().duplicates(new PartKey("P1")).iterator());
+            printValues("Shipments for Supplier S1", views.getShipmentBySupplierMap().duplicates(new SupplierKey("S1")).iterator());
         }
-        private void printEntries(String label, Iterator iterator){
-            try{
-                while(iterator.hasNext()){
-                    Map.Entry entry = (Map.Entry)iterator.next();
+
+        private void printEntries(String label, Iterator iterator) {
+            try {
+                while (iterator.hasNext()) {
+                    Map.Entry entry = (Map.Entry) iterator.next();
                     System.out.println(entry.getKey() + ": " + entry.getValue());
 
                 }
-            }finally{
+            } finally {
+                StoredIterator.close(iterator);
+            }
+        }
+
+        private void printValues(String label, Iterator iterator) {
+            System.out.println("\n--- " + label + " ---");
+            try {
+                while (iterator.hasNext()) {
+                    System.out.println(iterator.next().toString());
+                }
+            } finally {
                 StoredIterator.close(iterator);
             }
         }
