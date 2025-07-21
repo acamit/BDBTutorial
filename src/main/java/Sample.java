@@ -1,4 +1,4 @@
-import DB.SampleDatabase;
+import DB.SampleDatabase_old;
 import DB.SampleViews;
 import Models.PartData;
 import Models.PartKey;
@@ -21,10 +21,10 @@ import java.util.Map;
  **/
 public class Sample {
     private SampleViews views;
-    private SampleDatabase db;
+    private SampleDatabase_old db;
 
     public Sample(String homeDir) throws DatabaseException, FileNotFoundException {
-        db = new SampleDatabase(homeDir);
+        db = new SampleDatabase_old(homeDir);
         views = new SampleViews(db);
     }
 

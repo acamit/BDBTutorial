@@ -25,7 +25,7 @@ public class SampleViews {
     private StoredMap shipmentByPartMap;
     private StoredMap shipmentBySupplierMap;
 
-    public SampleViews(SampleDatabase db) {
+    public SampleViews(SampleDatabase_old db) {
         ClassCatalog catalog = db.getClassCatalog();
         EntryBinding partKeyBinding = new SerialBinding(catalog, PartKey.class);
         EntryBinding partValueBinding = new SerialBinding(catalog, PartData.class);
